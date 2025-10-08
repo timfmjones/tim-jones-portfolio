@@ -1,0 +1,45 @@
+{
+  "name": "Tim Jones",
+  "title": "Software Engineer",
+  "education": "Management Engineering @ University of Waterloo",
+  "location": "Toronto, ON",
+  "email": "tim@example.com",
+  "bio": {
+    "short": "Software engineer with a passion for creating digital experiences that leave a lasting impression.",
+    "long": "My journey began at the University of Waterloo, where I studied Management Engineering—a unique blend of technology, business, and systems thinking. This interdisciplinary background shaped how I approach problems: not just as technical challenges, but as opportunities to create meaningful solutions."
+  },
+  "interests": [
+    "AI and Machine Learning",
+    "Web Development",
+    "User Experience Design",
+    "Open Source",
+    "Creative Coding"
+  ],
+  "funFacts": [
+    {
+      "icon": "💻",
+      "title": "Code Enthusiast",
+      "description": "Started coding at 14, haven't stopped since"
+    },
+    {
+      "icon": "🚀",
+      "title": "Dream Builder",
+      "description": "Built a dream journal app inspired by Pixar storytelling"
+    },
+    {
+      "icon": "🧠",
+      "title": "AI Explorer",
+      "description": "Integrating AI to create meaningful user experiences"
+    },
+    {
+      "icon": "❤️",
+      "title": "Design Lover",
+      "description": "Obsessed with clean code and beautiful interfaces"
+    }
+  ],
+  "social": {
+    "github": "https://github.com/timjones",
+    "linkedin": "https://linkedin.com/in/timjones",
+    "twitter": "https://twitter.com/timjones"
+  }
+}

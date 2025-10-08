@@ -1,0 +1,40 @@
+{
+  "featured": [
+    {
+      "id": 1,
+      "title": "Dream Journal App",
+      "subtitle": "AI-Powered Dream Analysis",
+      "description": "A React + Node.js application that helps users log, track, and interpret their dreams using AI.",
+      "longDescription": "This full-stack application revolutionizes dream journaling by combining psychological insights with AI interpretation.",
+      "technologies": ["React", "Node.js", "Express", "Supabase", "OpenAI API", "Tailwind CSS"],
+      "features": [
+        "AI-powered dream interpretation",
+        "Mood and emotion tracking",
+        "Pattern recognition",
+        "Secure cloud storage",
+        "Beautiful UI design"
+      ],
+      "liveUrl": "https://dreamjournal.app",
+      "githubUrl": "https://github.com/timjones/dream-journal",
+      "image": "/images/dream-journal.png"
+    },
+    {
+      "id": 2,
+      "title": "Project Management Suite",
+      "subtitle": "Real-time Collaboration Platform",
+      "description": "A comprehensive project management tool with real-time collaboration and task tracking.",
+      "longDescription": "Designed for modern teams, this platform brings together project planning and collaboration.",
+      "technologies": ["React", "TypeScript", "Prisma", "PostgreSQL", "Socket.io", "Redis"],
+      "features": [
+        "Real-time updates",
+        "Multiple view options",
+        "Role management",
+        "Integrated chat",
+        "Automated workflows"
+      ],
+      "liveUrl": "https://projecthub.app",
+      "githubUrl": "https://github.com/timjones/project-hub",
+      "image": "/images/project-management.png"
+    }
+  ]
+}
