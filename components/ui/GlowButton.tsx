@@ -1,9 +1,9 @@
 'use client'
 
-import { ButtonHTMLAttributes, forwardRef } from 'react'
-import { motion } from 'framer-motion'
+import { forwardRef } from 'react'
+import { motion, type HTMLMotionProps } from 'framer-motion'
 
-interface GlowButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface GlowButtonProps extends Omit<HTMLMotionProps<'button'>, 'ref'> {
   children: React.ReactNode
 }
 
