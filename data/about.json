@@ -3,7 +3,7 @@
   "title": "Software Engineer",
   "education": "Management Engineering @ University of Waterloo",
   "location": "Toronto, ON",
-  "email": "tim@example.com",
+  "email": "timfmjones@gmail.com",
   "bio": {
     "short": "Software engineer with a passion for creating digital experiences that leave a lasting impression.",
     "long": "My journey began at the University of Waterloo, where I studied Management Engineering—a unique blend of technology, business, and systems thinking. This interdisciplinary background shaped how I approach problems: not just as technical challenges, but as opportunities to create meaningful solutions."
@@ -19,12 +19,12 @@
     {
       "icon": "💻",
       "title": "Code Enthusiast",
-      "description": "Started coding at 14, haven't stopped since"
+      "description": "Started coding at 18, haven't stopped since"
     },
     {
       "icon": "🚀",
-      "title": "Dream Builder",
-      "description": "Built a dream journal app inspired by Pixar storytelling"
+      "title": "DreamSprout",
+      "description": "Built an AI powered dream journal app containing story generations and dream analysi"
     },
     {
       "icon": "🧠",

@@ -9,7 +9,7 @@ const socialLinks = [
   {
     name: 'Email',
     icon: Mail,
-    href: 'mailto:tim@example.com',
+    href: 'mailto:timfmjones@gmail.com',
     color: 'hover:text-red-500',
   },
   {
@@ -21,7 +21,7 @@ const socialLinks = [
   {
     name: 'GitHub',
     icon: Github,
-    href: 'https://github.com/timjones',
+    href: 'https://github.com/timfmjones',
     color: 'hover:text-gray-800 dark:hover:text-white',
   },
   {
@@ -221,7 +221,7 @@ export default function Contact() {
                   </span>
                 </div>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  For urgent matters, feel free to reach out via LinkedIn or Twitter
+                  For urgent matters, feel free to reach out via LinkedIn
                 </p>
               </div>
             </div>

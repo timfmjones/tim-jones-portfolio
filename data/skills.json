@@ -3,37 +3,38 @@
     {
       "name": "Frontend",
       "skills": [
-        { "name": "React", "level": 95 },
-        { "name": "Next.js", "level": 90 },
-        { "name": "TypeScript", "level": 88 },
-        { "name": "Tailwind CSS", "level": 92 }
+        { "name": "React", "level": 80 },
+        { "name": "Next.js", "level": 75 },
+        { "name": "TypeScript", "level": 82 },
+        { "name": "Tailwind CSS", "level": 78 },
+        { "name": "Swift", "level": 80 }
       ]
     },
     {
       "name": "Backend",
       "skills": [
-        { "name": "Node.js", "level": 90 },
+        { "name": "Node.js", "level": 75 },
         { "name": "Python", "level": 85 },
-        { "name": "Express", "level": 88 },
-        { "name": "Prisma", "level": 82 }
+        { "name": "Express", "level": 70 },
+        { "name": "Prisma", "level": 72 }
       ]
     },
     {
       "name": "Database",
       "skills": [
         { "name": "PostgreSQL", "level": 85 },
-        { "name": "MongoDB", "level": 80 },
-        { "name": "Supabase", "level": 87 },
-        { "name": "Redis", "level": 75 }
+        { "name": "MongoDB", "level": 75 },
+        { "name": "Supabase", "level": 76 },
+        { "name": "Redis", "level": 72 }
       ]
     },
     {
       "name": "Tools & AI",
       "skills": [
-        { "name": "Git", "level": 92 },
+        { "name": "Git", "level": 88 },
         { "name": "Docker", "level": 78 },
-        { "name": "Figma", "level": 85 },
-        { "name": "OpenAI API", "level": 88 }
+        { "name": "Figma", "level": 80 },
+        { "name": "OpenAI API", "level": 82 }
       ]
     }
   ],

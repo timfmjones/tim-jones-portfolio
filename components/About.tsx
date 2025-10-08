@@ -15,12 +15,12 @@ export default function About() {
     {
       icon: Code2,
       title: 'Code Enthusiast',
-      description: 'Started coding at 14, haven\'t stopped since',
+      description: 'Started coding at 18, haven\'t stopped since',
     },
     {
       icon: Rocket,
       title: 'Dream Builder',
-      description: 'Built a dream journal app inspired by Pixar storytelling',
+      description: 'Built an AI powered dream journal app containing story generations and dream analysis',
     },
     {
       icon: Brain,

@@ -9,7 +9,7 @@ import Image from 'next/image'
 const projects = [
   {
     id: 1,
-    title: 'Dream Journal App',
+    title: 'DreamSprout App',
     subtitle: 'AI-Powered Dream Analysis',
     description: 'A React + Node.js application that helps users log, track, and interpret their dreams using AI. Features include mood tracking, dream patterns analysis, and Pixar-inspired storytelling elements.',
     longDescription: 'This full-stack application revolutionizes dream journaling by combining psychological insights with AI interpretation. Built with a focus on user privacy and meaningful insights, it helps users understand their subconscious patterns and emotional states through their dreams.',
@@ -23,12 +23,12 @@ const projects = [
       'Beautiful, intuitive UI inspired by Pixar aesthetics',
     ],
     stats: {
-      users: '500+',
-      dreams: '10,000+',
+      users: '100+',
+      dreams: '1,000+',
       rating: '4.8/5',
     },
-    liveLink: 'https://dreamjournal.app',
-    githubLink: 'https://github.com/timjones/dream-journal',
+    liveLink: 'https://dreamsprout.ca',
+    githubLink: 'https://github.com/timfmjones/dream-journal-frontend',
     color: 'from-purple-500 to-pink-500',
   },
   {
@@ -48,11 +48,11 @@ const projects = [
     ],
     stats: {
       teams: '50+',
-      tasks: '25,000+',
+      tasks: '500+',
       uptime: '99.9%',
     },
     liveLink: 'https://projecthub.app',
-    githubLink: 'https://github.com/timjones/project-hub',
+    githubLink: 'https://github.com/timfmjones/project-manager-frontend',
     color: 'from-blue-500 to-cyan-500',
   },
 ]

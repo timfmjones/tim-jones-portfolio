@@ -55,14 +55,15 @@ export default function Hero() {
 
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold">
             <span className="block mb-2">I turn ideas into</span>
-            <span className="gradient-text">
+            <span className="gradient-text inline-block min-h-[1.2em]">
               <Typewriter
                 options={{
                   strings: [
                     'interactive experiences',
+                    'AI-powered applications',
                     'elegant solutions',
                     'digital products',
-                    'meaningful connections',
+                    'creative tools',
                   ],
                   autoStart: true,
                   loop: true,
@@ -79,7 +80,7 @@ export default function Hero() {
             transition={{ delay: 0.4 }}
             className="text-xl sm:text-2xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
           >
-            Software Engineer | Management Engineering @ Waterloo
+            Software Engineer | Management Engineering Graduate @ Waterloo
           </motion.p>
 
           <motion.div

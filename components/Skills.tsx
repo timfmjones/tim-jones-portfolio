@@ -6,46 +6,50 @@ import {
   SiReact, SiNextdotjs, SiTypescript, SiJavascript, 
   SiNodedotjs, SiPython, SiTailwindcss, SiPrisma,
   SiPostgresql, SiMongodb, SiSupabase, SiVercel,
-  SiGit, SiFigma, SiDocker, SiOpenai
+  SiGit, SiFigma, SiDocker, SiOpenai,
+  SiFlutter, SiSwift, SiExpo, SiFirebase,
+  SiAndroid, SiIos, SiXcode
 } from 'react-icons/si'
 
 const skillCategories = [
   {
     title: 'Frontend',
     skills: [
-      { name: 'React', icon: SiReact, level: 95, color: '#61DAFB' },
-      { name: 'Next.js', icon: SiNextdotjs, level: 90, color: '#000000' },
-      { name: 'TypeScript', icon: SiTypescript, level: 88, color: '#3178C6' },
-      { name: 'Tailwind', icon: SiTailwindcss, level: 92, color: '#06B6D4' },
+      { name: 'React', icon: SiReact, level: 80, color: '#61DAFB' },
+      { name: 'Next.js', icon: SiNextdotjs, level: 75, color: '#000000' },
+      { name: 'TypeScript', icon: SiTypescript, level: 82, color: '#3178C6' },
+      { name: 'Tailwind', icon: SiTailwindcss, level: 78, color: '#06B6D4' }
     ],
   },
   {
-    title: 'Backend',
+    title: 'Backend & Databases',
     skills: [
-      { name: 'Node.js', icon: SiNodedotjs, level: 90, color: '#339933' },
       { name: 'Python', icon: SiPython, level: 85, color: '#3776AB' },
-      { name: 'Prisma', icon: SiPrisma, level: 82, color: '#2D3748' },
-      { name: 'Express', icon: SiNodedotjs, level: 88, color: '#000000' },
-    ],
-  },
-  {
-    title: 'Database',
-    skills: [
+      { name: 'Node.js', icon: SiNodedotjs, level: 75, color: '#339933' },
       { name: 'PostgreSQL', icon: SiPostgresql, level: 85, color: '#4169E1' },
-      { name: 'MongoDB', icon: SiMongodb, level: 80, color: '#47A248' },
-      { name: 'Supabase', icon: SiSupabase, level: 87, color: '#3ECF8E' },
-      { name: 'Redis', icon: SiNodedotjs, level: 75, color: '#DC382D' },
+      { name: 'MongoDB', icon: SiMongodb, level: 75, color: '#47A248' },
+      { name: 'Express', icon: SiNodedotjs, level: 72, color: '#000000' },
     ],
   },
   {
-    title: 'Tools & AI',
+    title: 'Cloud & DevOps',
     skills: [
-      { name: 'Git', icon: SiGit, level: 92, color: '#F05032' },
+      { name: 'Git', icon: SiGit, level: 88, color: '#F05032' },
       { name: 'Docker', icon: SiDocker, level: 78, color: '#2496ED' },
-      { name: 'Figma', icon: SiFigma, level: 85, color: '#F24E1E' },
-      { name: 'OpenAI', icon: SiOpenai, level: 88, color: '#412991' },
+      { name: 'Figma', icon: SiFigma, level: 80, color: '#F24E1E' },
+      { name: 'Redis', icon: SiNodedotjs, level: 72, color: '#DC382D' },
+      { name: 'OpenAI', icon: SiOpenai, level: 82, color: '#412991' },
     ],
   },
+  {
+    title: 'Mobile',
+    skills: [
+      { name: 'React Native', icon: SiReact, level: 88, color: '#61DAFB' },
+      { name: 'Expo', icon: SiExpo, level: 85, color: '#000020' },
+      { name: 'Flutter', icon: SiFlutter, level: 75, color: '#02569B' },
+      { name: 'Swift', icon: SiSwift, level: 70, color: '#FA7343' },
+    ],
+  }
 ]
 
 export default function Skills() {
