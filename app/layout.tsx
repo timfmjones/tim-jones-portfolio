@@ -61,8 +61,28 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const theme = localStorage.getItem('theme');
+                  if (theme) {
+                    document.documentElement.classList.add(theme);
+                  } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+                    document.documentElement.classList.add('light');
+                  } else {
+                    document.documentElement.classList.add('dark');
+                  }
+                } catch (e) {
+                  document.documentElement.classList.add('dark');
+                }
+              })();
+            `,
+          }}
+        />
       </head>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans`}>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans bg-white dark:bg-dark-bg text-gray-900 dark:text-gray-100 transition-colors duration-300`}>
         <ThemeProvider>
           {children}
         </ThemeProvider>

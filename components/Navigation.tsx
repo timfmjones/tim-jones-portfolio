@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Sun, Moon } from 'lucide-react'
+import { useTheme } from './ThemeProvider'
 
 const navItems = [
   { name: 'Home', href: '#home' },
@@ -16,6 +17,12 @@ const navItems = [
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,6 +39,11 @@ export default function Navigation() {
       element.scrollIntoView({ behavior: 'smooth' })
     }
     setIsMobileMenuOpen(false)
+  }
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark'
+    setTheme(newTheme)
   }
 
   return (
@@ -57,8 +69,8 @@ export default function Navigation() {
             </a>
           </motion.div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
+          {/* Desktop Navigation with Theme Toggle */}
+          <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item, index) => (
               <motion.a
                 key={item.name}
@@ -72,31 +84,67 @@ export default function Navigation() {
                 {item.name}
               </motion.a>
             ))}
+            
+            {/* Theme Toggle Button */}
+            {mounted && (
+              <motion.button
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.7 }}
+                onClick={toggleTheme}
+                className="p-2 bg-gray-100 dark:bg-gray-800 rounded-full hover:scale-110 transition-transform ml-4"
+                aria-label="Toggle theme"
+              >
+                {theme === 'dark' ? (
+                  <Sun className="w-5 h-5 text-yellow-500" />
+                ) : (
+                  <Moon className="w-5 h-5 text-blue-600" />
+                )}
+              </motion.button>
+            )}
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Controls */}
+          <div className="flex md:hidden items-center space-x-2">
+            {/* Mobile Theme Toggle */}
+            {mounted && (
+              <button
+                onClick={toggleTheme}
+                className="p-2 bg-gray-100 dark:bg-gray-800 rounded-full"
+                aria-label="Toggle theme"
+              >
+                {theme === 'dark' ? (
+                  <Sun className="w-5 h-5 text-yellow-500" />
+                ) : (
+                  <Moon className="w-5 h-5 text-blue-600" />
+                )}
+              </button>
+            )}
+            
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden mt-4 py-4 space-y-4"
+            className="md:hidden mt-4 py-4 space-y-4 bg-white dark:bg-dark-bg rounded-lg shadow-lg"
           >
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className="block text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+                className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
               >
                 {item.name}
               </a>

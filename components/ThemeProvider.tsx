@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react'
 
-type Theme = 'dark' | 'light' | 'system'
+type Theme = 'dark' | 'light'
 
 type ThemeProviderProps = {
   children: React.ReactNode
@@ -23,35 +23,42 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 
   useEffect(() => {
     setMounted(true)
+    // Get theme from localStorage or system preference
     const storedTheme = localStorage.getItem('theme') as Theme
     if (storedTheme) {
       setTheme(storedTheme)
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setTheme('dark')
+      document.documentElement.classList.remove('light', 'dark')
+      document.documentElement.classList.add(storedTheme)
+    } else {
+      // Check system preference
+      if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+        setTheme('light')
+        document.documentElement.classList.remove('dark')
+        document.documentElement.classList.add('light')
+      } else {
+        setTheme('dark')
+        document.documentElement.classList.remove('light')
+        document.documentElement.classList.add('dark')
+      }
     }
   }, [])
 
-  useEffect(() => {
-    if (!mounted) return
-
-    const root = window.document.documentElement
-    root.classList.remove('light', 'dark')
-
-    if (theme === 'system') {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'light'
-      root.classList.add(systemTheme)
-    } else {
-      root.classList.add(theme)
-    }
-
-    localStorage.setItem('theme', theme)
-  }, [theme, mounted])
+  const updateTheme = (newTheme: Theme) => {
+    setTheme(newTheme)
+    
+    // Update DOM
+    document.documentElement.classList.remove('light', 'dark')
+    document.documentElement.classList.add(newTheme)
+    
+    // Save to localStorage
+    localStorage.setItem('theme', newTheme)
+    
+    console.log('Theme updated to:', newTheme) // Debug log
+  }
 
   const value = {
     theme,
-    setTheme,
+    setTheme: updateTheme,
   }
 
   return (
