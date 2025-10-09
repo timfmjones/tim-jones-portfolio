@@ -15,7 +15,7 @@ const socialLinks = [
   {
     name: 'LinkedIn',
     icon: Linkedin,
-    href: 'https://linkedin.com/in/timjones',
+    href: 'https://www.linkedin.com/in/tim-jones-647930178/',
     color: 'hover:text-blue-600',
   },
   {

@@ -42,7 +42,7 @@ const responses: Record<string, string[]> = {
   
   // Contact
   contact: [
-    "Want to get in touch with Tim? Here are the best ways:\n\n📧 Email: timfmjones@gmail.com\n💼 LinkedIn: linkedin.com/in/timjones\n🐙 GitHub: github.com/timfmjones\n🐦 Twitter: @timjones\n\nTim loves connecting with fellow developers and discussing new project ideas. Don't hesitate to reach out!",
+    "Want to get in touch with Tim? Here are the best ways:\n\n📧 Email: timfmjones@gmail.com\n💼 LinkedIn: www.linkedin.com/in/tim-jones-647930178/\n🐙 GitHub: github.com/timfmjones\n🐦 Twitter: @timjones\n\nTim loves connecting with fellow developers and discussing new project ideas. Don't hesitate to reach out!",
   ],
   
   // Current work

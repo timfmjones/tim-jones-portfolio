@@ -26,7 +26,7 @@ function getChatbotResponse(input: string): string {
     dreamjournal: "The Dream Journal App is one of Tim's proudest creations! 🌙\n\nIt's a full-stack application that helps users log and interpret their dreams using AI. Key features include AI-powered interpretation, mood tracking, and pattern recognition.",
     education: "Tim studied Management Engineering at the University of Waterloo! 🎓\n\nThis unique program combines software engineering, business strategy, systems thinking, and operations research.",
     skills: "Tim has a diverse technical toolkit! 🛠️\n\n**Frontend:** React, Next.js, TypeScript, Tailwind CSS\n\n**Backend:** Node.js, Python, Express, Prisma\n\n**Database:** PostgreSQL, MongoDB, Supabase",
-    contact: "Want to get in touch with Tim? Here are the best ways:\n\n📧 Email: timfmjones@gmail.com\n💼 LinkedIn: linkedin.com/in/timjones\n🐙 GitHub: github.com/timfmjones",
+    contact: "Want to get in touch with Tim? Here are the best ways:\n\n📧 Email: timfmjones@gmail.com\n💼 LinkedIn: linkedin.com/in/tim-jones-647930178/\n🐙 GitHub: github.com/timfmjones",
     default: "That's an interesting question! I can tell you about Tim's projects, education, skills, or how to get in touch. What would you like to explore?"
   }
   

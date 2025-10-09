@@ -33,7 +33,7 @@ export default function Footer() {
               GitHub
             </a>
             <a
-              href="https://linkedin.com/in/timjones"
+              href="https://www.linkedin.com/in/tim-jones-647930178/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
