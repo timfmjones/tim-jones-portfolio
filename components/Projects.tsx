@@ -55,6 +55,30 @@ const projects = [
     githubLink: 'https://github.com/timfmjones/project-manager-frontend',
     color: 'from-blue-500 to-cyan-500',
   },
+  {
+    id: 3,
+    title: 'NHL Simulation Model',
+    subtitle: 'Discrete Event Simulation Model for NHL',
+    description: 'A sophisticated Discrete Event Simulation (DES) system that models NHL hockey games using real team statistics from the 2024 season.',
+    longDescription: 'A sophisticated Discrete Event Simulation (DES) system that models NHL hockey games using real team statistics from the 2024 season. The simulation incorporates player performance metrics, team strategies, and game dynamics to provide realistic outcomes and insights.',
+    image: '/images/project-management.png', // Add your image
+    tech: ['React', 'TypeScript', 'Prisma', 'PostgreSQL', 'Socket.io', 'Redis'],
+    features: [
+      'Core Simulation Engine in Python',
+      'Statistics Tracking and Visualization',
+      'Predictive Analytics with Machine Learning',
+      'Batch processing for large-scale simulations',
+      'Result visualization through interactive dashboards',
+    ],
+    stats: {
+      teams: '50+',
+      tasks: '500+',
+      uptime: '99.9%',
+    },
+    liveLink: 'https://projecthub.app',
+    githubLink: 'https://github.com/timfmjones/NHL-simulation-model#',
+    color: 'from-green-500 to-forest-500',
+  },
 ]
 
 export default function Projects() {
