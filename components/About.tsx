@@ -62,10 +62,13 @@ export default function About() {
             <div className="relative w-full aspect-square max-w-md mx-auto lg:mx-0">
               <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-2xl blur-2xl opacity-30" />
               <div className="relative w-full h-full glass-effect rounded-2xl p-2">
-                {/* Replace with your actual image */}
-                <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 rounded-xl flex items-center justify-center">
-                  <span className="text-6xl">👨‍💻</span>
-                </div>
+                <Image
+                    src="/images/profile.jpeg"  // or .jpeg
+                    alt="Tim Jones"
+                    fill
+                    className="rounded-xl object-cover"
+                    priority
+                />
               </div>
             </div>
           </motion.div>

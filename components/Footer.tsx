@@ -19,13 +19,13 @@ export default function Footer() {
           
           <div className="flex items-center gap-4 text-sm">
             <a
-              href="/resume.pdf"
+              href="/tim-jones-resume.pdf"
               className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
             >
               Resume
             </a>
             <a
-              href="https://github.com/timjones"
+              href="https://github.com/timfmjones"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
