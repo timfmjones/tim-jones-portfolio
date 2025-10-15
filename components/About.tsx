@@ -63,7 +63,7 @@ export default function About() {
               <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-2xl blur-2xl opacity-30" />
               <div className="relative w-full h-full glass-effect rounded-2xl p-2">
                 <Image
-                    src="/images/profile.jpeg"  // or .jpeg
+                    src="/images/profile.jpeg"  
                     alt="Tim Jones"
                     fill
                     className="rounded-xl object-cover"
