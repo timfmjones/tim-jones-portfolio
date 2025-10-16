@@ -15,7 +15,7 @@ const skillCategories = [
   {
     title: 'Frontend',
     skills: [
-      { name: 'React', icon: SiReact, level: 80, color: '#61DAFB' },
+      { name: 'React', icon: SiReact, level: 85, color: '#61DAFB' },
       { name: 'Next.js', icon: SiNextdotjs, level: 75, color: '#000000' },
       { name: 'TypeScript', icon: SiTypescript, level: 82, color: '#3178C6' },
       { name: 'Tailwind', icon: SiTailwindcss, level: 78, color: '#06B6D4' }
@@ -24,8 +24,8 @@ const skillCategories = [
   {
     title: 'Backend & Databases',
     skills: [
-      { name: 'Python', icon: SiPython, level: 85, color: '#3776AB' },
-      { name: 'Node.js', icon: SiNodedotjs, level: 75, color: '#339933' },
+      { name: 'Python', icon: SiPython, level: 88, color: '#3776AB' },
+      { name: 'Node.js', icon: SiNodedotjs, level: 80, color: '#339933' },
       { name: 'PostgreSQL', icon: SiPostgresql, level: 85, color: '#4169E1' },
       { name: 'MongoDB', icon: SiMongodb, level: 75, color: '#47A248' },
       { name: 'Express', icon: SiNodedotjs, level: 72, color: '#000000' },
@@ -34,7 +34,7 @@ const skillCategories = [
   {
     title: 'Cloud & DevOps',
     skills: [
-      { name: 'Git', icon: SiGit, level: 88, color: '#F05032' },
+      { name: 'Git', icon: SiGit, level: 87, color: '#F05032' },
       { name: 'Docker', icon: SiDocker, level: 78, color: '#2496ED' },
       { name: 'Figma', icon: SiFigma, level: 80, color: '#F24E1E' },
       { name: 'Redis', icon: SiNodedotjs, level: 72, color: '#DC382D' },
@@ -44,10 +44,10 @@ const skillCategories = [
   {
     title: 'Mobile',
     skills: [
-      { name: 'React Native', icon: SiReact, level: 88, color: '#61DAFB' },
-      { name: 'Expo', icon: SiExpo, level: 85, color: '#000020' },
+      { name: 'React Native', icon: SiReact, level: 85, color: '#61DAFB' },
+      { name: 'Swift', icon: SiSwift, level: 78, color: '#FA7343' },
       { name: 'Flutter', icon: SiFlutter, level: 75, color: '#02569B' },
-      { name: 'Swift', icon: SiSwift, level: 70, color: '#FA7343' },
+      { name: 'Expo', icon: SiExpo, level: 83, color: '#000020' },
     ],
   }
 ]

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
-import { Mail, Linkedin, Github, Twitter, Send, CheckCircle } from 'lucide-react'
+import { Mail, Linkedin, Github, Twitter, Send, CheckCircle, AlertCircle } from 'lucide-react'
 
 const socialLinks = [
   {
@@ -40,27 +40,56 @@ export default function Contact() {
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState('')
 
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   })
 
+  // Get Formspree endpoint from environment variable
+  const FORMSPREE_ENDPOINT = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError('')
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    // Safety check
+    if (!FORMSPREE_ENDPOINT) {
+      setError('Form configuration error. Please email me directly at timfmjones@gmail.com')
+      setIsSubmitting(false)
+      return
+    }
     
-    setIsSubmitted(true)
-    setIsSubmitting(false)
-    
-    // Reset after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false)
-      setFormState({ name: '', email: '', message: '' })
-    }, 3000)
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formState),
+      })
+      
+      if (response.ok) {
+        setIsSubmitted(true)
+        setIsSubmitting(false)
+        
+        // Reset after 5 seconds
+        setTimeout(() => {
+          setIsSubmitted(false)
+          setFormState({ name: '', email: '', message: '' })
+        }, 5000)
+      } else {
+        throw new Error('Failed to send message')
+      }
+    } catch (err) {
+      setError('Something went wrong. Please try again or email me directly.')
+      setIsSubmitting(false)
+      
+      // Clear error after 5 seconds
+      setTimeout(() => setError(''), 5000)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -108,7 +137,8 @@ export default function Contact() {
                   value={formState.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-white dark:bg-dark-bg border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                  disabled={isSubmitting || isSubmitted}
+                  className="w-full px-4 py-3 bg-white dark:bg-dark-bg border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="John Doe"
                 />
               </div>
@@ -124,7 +154,8 @@ export default function Contact() {
                   value={formState.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-white dark:bg-dark-bg border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                  disabled={isSubmitting || isSubmitted}
+                  className="w-full px-4 py-3 bg-white dark:bg-dark-bg border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="john@example.com"
                 />
               </div>
@@ -139,11 +170,24 @@ export default function Contact() {
                   value={formState.message}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting || isSubmitted}
                   rows={5}
-                  className="w-full px-4 py-3 bg-white dark:bg-dark-bg border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"
+                  className="w-full px-4 py-3 bg-white dark:bg-dark-bg border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="Tell me about your project..."
                 />
               </div>
+
+              {/* Error Message */}
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-2 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-red-600 dark:text-red-400 text-sm"
+                >
+                  <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                  <p>{error}</p>
+                </motion.div>
+              )}
 
               <button
                 type="submit"
@@ -158,7 +202,7 @@ export default function Contact() {
                   {isSubmitted ? (
                     <>
                       <CheckCircle className="w-5 h-5" />
-                      Message Sent!
+                      Message Sent! I'll be in touch soon.
                     </>
                   ) : isSubmitting ? (
                     <>

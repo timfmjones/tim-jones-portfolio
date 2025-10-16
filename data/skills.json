@@ -14,7 +14,7 @@
       "name": "Backend",
       "skills": [
         { "name": "Node.js", "level": 75 },
-        { "name": "Python", "level": 85 },
+        { "name": "Python", "level": 88 },
         { "name": "Express", "level": 70 },
         { "name": "Prisma", "level": 72 }
       ]
@@ -31,7 +31,7 @@
     {
       "name": "Tools & AI",
       "skills": [
-        { "name": "Git", "level": 88 },
+        { "name": "Git", "level": 87 },
         { "name": "Docker", "level": 78 },
         { "name": "Figma", "level": 80 },
         { "name": "OpenAI API", "level": 82 }
