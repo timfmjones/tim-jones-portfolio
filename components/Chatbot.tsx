@@ -3,12 +3,11 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle, X, Send, Bot, User, Sparkles } from 'lucide-react'
-import { getChatbotResponse } from '../lib/chatbot-response'
 
 interface Message {
   id: string
   text: string
-  sender: 'user' | 'bot'
+  role: 'user' | 'assistant'
   timestamp: Date
 }
 
@@ -18,13 +17,14 @@ export default function Chatbot() {
     {
       id: '1',
       text: "Hi, I'm Tim's AI assistant 👋 Want to explore his work? Ask me about his projects, skills, or background!",
-      sender: 'bot',
+      role: 'assistant',
       timestamp: new Date(),
     },
   ])
   const [inputText, setInputText] = useState('')
   const [isTyping, setIsTyping] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const abortControllerRef = useRef<AbortController | null>(null)
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -41,12 +41,12 @@ export default function Chatbot() {
   }, [])
 
   const handleSend = async () => {
-    if (!inputText.trim()) return
+    if (!inputText.trim() || isTyping) return
 
     const userMessage: Message = {
       id: Date.now().toString(),
       text: inputText,
-      sender: 'user',
+      role: 'user',
       timestamp: new Date(),
     }
 
@@ -54,18 +54,107 @@ export default function Chatbot() {
     setInputText('')
     setIsTyping(true)
 
-    // Simulate typing delay
-    setTimeout(() => {
-      const botResponse = getChatbotResponse(inputText)
-      const botMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        text: botResponse,
-        sender: 'bot',
-        timestamp: new Date(),
+    // Create abort controller for this request
+    abortControllerRef.current = new AbortController()
+
+    try {
+      // Prepare messages for API (convert to OpenAI format)
+      const apiMessages = messages
+        .filter(msg => msg.id !== '1') // Exclude the initial greeting
+        .map(msg => ({
+          role: msg.role,
+          content: msg.text,
+        }))
+      
+      // Add the new user message
+      apiMessages.push({
+        role: 'user',
+        content: inputText,
+      })
+
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ messages: apiMessages }),
+        signal: abortControllerRef.current.signal,
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to get response')
       }
-      setMessages(prev => [...prev, botMessage])
+
+      // Handle streaming response
+      const reader = response.body?.getReader()
+      const decoder = new TextDecoder()
+      let assistantMessageId = (Date.now() + 1).toString()
+      let fullText = ''
+
+      if (reader) {
+        // Add initial assistant message
+        setMessages(prev => [
+          ...prev,
+          {
+            id: assistantMessageId,
+            text: '',
+            role: 'assistant',
+            timestamp: new Date(),
+          },
+        ])
+
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) break
+
+          const chunk = decoder.decode(value)
+          const lines = chunk.split('\n')
+
+          for (const line of lines) {
+            if (line.startsWith('data: ')) {
+              const data = line.slice(6)
+              if (data === '[DONE]') {
+                setIsTyping(false)
+                break
+              }
+
+              try {
+                const parsed = JSON.parse(data)
+                if (parsed.text) {
+                  fullText += parsed.text
+                  // Update the message with accumulated text
+                  setMessages(prev =>
+                    prev.map(msg =>
+                      msg.id === assistantMessageId
+                        ? { ...msg, text: fullText }
+                        : msg
+                    )
+                  )
+                }
+              } catch (e) {
+                // Skip invalid JSON
+              }
+            }
+          }
+        }
+      }
+    } catch (error: any) {
+      if (error.name === 'AbortError') {
+        console.log('Request aborted')
+      } else {
+        console.error('Error getting response:', error)
+        const errorMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          text: "Sorry, I'm having trouble connecting right now. Please try again!",
+          role: 'assistant',
+          timestamp: new Date(),
+        }
+        setMessages(prev => [...prev, errorMessage])
+      }
+    } finally {
       setIsTyping(false)
-    }, 1000)
+      abortControllerRef.current = null
+    }
   }
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -122,8 +211,8 @@ export default function Chatbot() {
                     <Bot className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Tim's Assistant</h3>
-                    <p className="text-xs opacity-90">Always here to help</p>
+                    <h3 className="font-semibold">Tim's AI Assistant</h3>
+                    <p className="text-xs opacity-90">Powered by ChatGPT</p>
                   </div>
                 </div>
                 <button
@@ -142,20 +231,20 @@ export default function Chatbot() {
                   key={message.id}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                  className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  <div className={`flex items-start gap-2 max-w-[80%] ${message.sender === 'user' ? 'flex-row-reverse' : ''}`}>
+                  <div className={`flex items-start gap-2 max-w-[80%] ${message.role === 'user' ? 'flex-row-reverse' : ''}`}>
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                      message.sender === 'user' ? 'bg-primary' : 'bg-gray-200 dark:bg-gray-700'
+                      message.role === 'user' ? 'bg-primary' : 'bg-gray-200 dark:bg-gray-700'
                     }`}>
-                      {message.sender === 'user' ? (
+                      {message.role === 'user' ? (
                         <User className="w-4 h-4 text-white" />
                       ) : (
                         <Bot className="w-4 h-4 text-gray-600 dark:text-gray-300" />
                       )}
                     </div>
                     <div className={`px-4 py-2 rounded-2xl ${
-                      message.sender === 'user'
+                      message.role === 'user'
                         ? 'bg-primary text-white'
                         : 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200'
                     }`}>
@@ -210,11 +299,12 @@ export default function Chatbot() {
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder="Ask me anything..."
-                  className="flex-1 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-primary"
+                  disabled={isTyping}
+                  className="flex-1 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
                 />
                 <button
                   onClick={handleSend}
-                  disabled={!inputText.trim()}
+                  disabled={!inputText.trim() || isTyping}
                   className="p-2 bg-primary text-white rounded-full hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                 >
                   <Send className="w-5 h-5" />
